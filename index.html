@@ -14,16 +14,18 @@
     </header>
     <div id="game">
         <section id="monster" class="container">
+            <h2>Monster Health</h2>
             <div class="healthbar">
                 <div class="healthbar__value" :style="monsterBarStyles"></div>
             </div>
         </section>
         <section id="player" class="container">
+            <h2>Your Health</h2>
             <div class="healthbar">
                 <div class="healthbar__value" :style="playerBarStyles"></div>
             </div>
         </section>
-        <section class="container" v-show="winner">
+        <section class="container" v-if="winner">
             <h2>Game over!</h2>
             <h3 v-show="winner === 'monster'">You lost!</h3>
             <h3 v-show="winner === 'player'">You win!</h3>
@@ -31,16 +33,16 @@
 
             <button @click="startGame">Restart!</button>
         </section>
-        <section id="controls">
+        <section id="controls" v-else>
             <button @click="attackMonster">ATTACK</button>
             <button :disabled="mayUsedSpecialAttack" @click="specialAttackMonster">SPECIAL ATTACK</button>
             <button @click="healPlayer">HEAL</button>
-            <button>SURRENDER</button>
+            <button @click="surrender">SURRENDER</button>
         </section>
         <section id="log" class="container">
             <h2>Battle log</h2>
             <ul>
-                <li></li>
+                <li v-for="(msg, index) in logMessages" :key="index">{{ `${msg.who} ${msg.what} ${msg.value}` }}</li>
             </ul>
         </section>
         

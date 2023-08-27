@@ -9,6 +9,7 @@ const app = {
 			monsterHealth: 100,
 			currentRound: 0,
 			winner: null,
+			logMessages: [],
 		};
 	},
 	computed: {
@@ -47,15 +48,18 @@ const app = {
 			const attackValue = getRandomValue(5, 12);
 			this.monsterHealth -= attackValue;
 			this.increaseRound();
+			this.addLogMessage('Player', 'attack', attackValue);
 		},
 		attackPlayer() {
 			const attackValue = getRandomValue(8, 15);
 			this.playerHealth -= attackValue;
+			this.addLogMessage("Monster", "attack", attackValue);
 		},
 		specialAttackMonster() {
 			const attackValue = getRandomValue(10, 25);
 			this.monsterHealth -= attackValue;
 			this.increaseRound();
+			this.addLogMessage("Player", "special attack", attackValue);
 		},
 		healPlayer() {
 			const healValue = getRandomValue(9, 20);
@@ -65,6 +69,7 @@ const app = {
 				this.playerHealth += healValue;
 			}
 			this.increaseRound();
+			this.addLogMessage("Player", "heal", healValue);
 		},
 		increaseRound() {
 			this.currentRound++;
@@ -75,6 +80,16 @@ const app = {
 			this.monsterHealth = 100;
 			this.currentRound = 0;
 			this.winner = null;
+		},
+		surrender() {
+			this.winner = 'monster';
+		},
+		addLogMessage(who, what, value) {
+			this.logMessages.unshift({
+				who: who,
+				what: what,
+				value: value
+			})
 		}
 	},
 };
