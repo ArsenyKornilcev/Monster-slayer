@@ -48,7 +48,7 @@ const app = {
 			const attackValue = getRandomValue(5, 12);
 			this.monsterHealth -= attackValue;
 			this.increaseRound();
-			this.addLogMessage('Player', 'attack', attackValue);
+			this.addLogMessage("Player", "attack", attackValue);
 		},
 		attackPlayer() {
 			const attackValue = getRandomValue(8, 15);
@@ -82,15 +82,16 @@ const app = {
 			this.winner = null;
 		},
 		surrender() {
-			this.winner = 'monster';
+			this.winner = "monster";
+			this.logMessages = [];
 		},
 		addLogMessage(who, what, value) {
 			this.logMessages.unshift({
 				who: who,
 				what: what,
-				value: value
-			})
-		}
+				value: value,
+			});
+		},
 	},
 };
 

@@ -42,7 +42,15 @@
         <section id="log" class="container">
             <h2>Battle log</h2>
             <ul>
-                <li v-for="(msg, index) in logMessages" :key="index">{{ `${msg.who} ${msg.what} ${msg.value}` }}</li>
+                <li v-for="(msg, index) in logMessages" :key="index">
+                    <span :class="{'log--player': msg.who === 'Player', 'log--monster': msg.who === 'Monster'}">
+                        {{ `${msg.who} ` }}
+                    </span>
+                    <span :class="{'log--damage': msg.what === 'attack', 'log--heal': msg.what === 'heal'}" >
+                        {{ `${msg.what} ` }}
+                    </span>
+                    <b>{{ msg.value }}</b>
+                </li>
             </ul>
         </section>
         
