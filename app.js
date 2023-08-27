@@ -7,12 +7,12 @@ const app = {
 		return {
 			playerHealth: 100,
 			monsterHealth: 100,
-            currentRound: 0,
+			currentRound: 0,
 		};
 	},
 	methods: {
 		attackMonster() {
-            this.currentRound++;
+			this.currentRound++;
 			const attackValue = getRandomValue(5, 12);
 			this.monsterHealth -= attackValue;
 			this.attackPlayer();
@@ -22,11 +22,18 @@ const app = {
 			this.playerHealth -= attackValue;
 		},
 		specialAttackMonster() {
-            this.currentRound++;
-            const attackValue = getRandomValue(10, 25);
+			this.currentRound++;
+			const attackValue = getRandomValue(10, 25);
 			this.monsterHealth -= attackValue;
 			this.attackPlayer();
-        },
+		},
+		healPlayer() {
+			this.currentRound++;
+			const healValue = getRandomValue(9, 20);
+            if(healValue + this.playerHealth >= 100) {
+                this.playerHealth = 100;
+            }
+		},
 	},
 	computed: {
 		monsterBarStyles() {
@@ -34,6 +41,9 @@ const app = {
 		},
 		playerBarStyles() {
 			return { width: this.playerHealth + "%" };
+		},
+		mayUsedSpecialAttack() {
+			return this.currentRound % 3 !== 0;
 		},
 	},
 };
