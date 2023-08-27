@@ -32,15 +32,22 @@ const app = {
 			const healValue = getRandomValue(9, 20);
             if(healValue + this.playerHealth >= 100) {
                 this.playerHealth = 100;
+            } else {
+                this.playerHealth += healValue;
             }
+            this.attackPlayer();
 		},
 	},
 	computed: {
 		monsterBarStyles() {
-			return { width: this.monsterHealth + "%" };
+			return {
+				width: this.monsterHealth < 0 ? 0 : this.monsterHealth + "%",
+			};
 		},
 		playerBarStyles() {
-			return { width: this.playerHealth + "%" };
+			return {
+				width: this.playerHealth < 0 ? 0 : this.playerHealth + "%",
+			};
 		},
 		mayUsedSpecialAttack() {
 			return this.currentRound % 3 !== 0;
