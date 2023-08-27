@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Monster slayer</title>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="app.js" defer></script>
 </head>
@@ -15,16 +15,16 @@
     <div id="game">
         <section id="monster" class="container">
             <div class="healthbar">
-                <div class="healthbar__value"></div>
+                <div class="healthbar__value" :style="monsterBarStyles"></div>
             </div>
         </section>
         <section id="player" class="container">
             <div class="healthbar">
-                <div class="healthbar__value"></div>
+                <div class="healthbar__value" :style="playerBarStyles"></div>
             </div>
         </section>
         <section id="controls">
-            <button>ATTACK</button>
+            <button @click="attackMonster">ATTACK</button>
             <button>SPECIAL ATTACK</button>
             <button>HEAL</button>
             <button>SURRENDER</button>
