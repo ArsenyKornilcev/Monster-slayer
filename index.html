@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="https://unpkg.com/vue@next"></script>
     <script src="app.js" defer></script>
 </head>
+
 <body>
     <header>
         <h1>Monster Slayer</h1>
@@ -43,17 +45,20 @@
             <h2>Battle log</h2>
             <ul>
                 <li v-for="(msg, index) in logMessages" :key="index">
-                    <span :class="{'log--player': msg.who === 'Player', 'log--monster': msg.who === 'Monster'}">
-                        {{ `${msg.who} ` }}
-                    </span>
-                    <span :class="{'log--damage': msg.what === 'attack', 'log--heal': msg.what === 'heal'}" >
-                        {{ `${msg.what} ` }}
-                    </span>
-                    <b>{{ msg.value }}</b>
+                    <b>
+                        <span :class="{'log--player': msg.who === 'Player', 'log--monster': msg.who === 'Monster'}">
+                            {{ `${msg.who} ` }}
+                        </span>
+                        <span :class="{'log--damage': msg.what === 'attack', 'log--heal': msg.what === 'heal'}">
+                            {{ `${msg.what} ` }}
+                        </span>
+                        {{ msg.value }}
+                    </b>
                 </li>
             </ul>
         </section>
-        
+
     </div>
 </body>
+
 </html>
